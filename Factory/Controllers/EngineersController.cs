@@ -34,5 +34,15 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Details(int id)
+    {
+      //error handeling if null
+      Engineer engineer = _db.Engineers
+        .Include(engineer => engineer.AuthorizationJoins)
+        .ThenInclude(joinEntry => joinEntry.Machine)
+        .FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(engineer);
+    }
   }
 }
