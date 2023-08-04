@@ -44,5 +44,31 @@ namespace Factory.Controllers
         .FirstOrDefault(machine => machine.MachineId == id);
       return View(machine);
     }
+
+    public ActionResult AddEngineer(int id)
+    {
+      // we make a form, associate it to an engineer id
+      // we add a viewbag to allow a machine to be selected
+      Machine machine = _db.Machines
+      .FirstOrDefault(machine => machine.MachineId == id);
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
+      return View(machine);
+    }
+
+    [HttpPost]
+    public ActionResult AddEngineer(Machine machine, int engineerId)
+    {
+      // id is engineers note add machine will go into the AuthorizationJoin table
+#nullable enable
+      AuthorizationJoin? alreadyJoined = _db.AuthorizationJoins.FirstOrDefault(join => (join.EngineerId == engineerId && join.MachineId == machine.MachineId));
+#nullable disable
+      // id of 0 is default so remove this corner case
+      if (alreadyJoined == null && engineerId != 0)
+      {
+        _db.AuthorizationJoins.Add(new AuthorizationJoin() { MachineId = machine.MachineId, EngineerId = engineerId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = machine.MachineId });
+    }
   }
 }
