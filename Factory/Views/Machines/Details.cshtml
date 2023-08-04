@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models;
+@model Factory.Models.Machine
+
+<h1>Machine Details</h1>
+
+@Html.DisplayNameFor(model=> model.Title):
+@Html.DisplayFor(model=> model.Title)
+
+@if (Model.AuthorizationJoins.Count == 0)
+{
+  <h3>No engineer associated with Machine</h3>
+}
+else
+{
+  <h3>Authorized to work with the following Engineers:</h3>
+  <ul>
+  @foreach (AuthorizationJoin joinEntry in @Model.AuthorizationJoins)
+    {
+      <li>${joinEntry.Engineer.Name}</li>
+    }
+
+  </ul>
+}
+
+@* //pass the join value in here *@
+
