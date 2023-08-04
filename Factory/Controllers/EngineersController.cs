@@ -20,5 +20,19 @@ namespace Factory.Controllers
       List<Engineer> allEngineers = _db.Engineers.ToList();
       return View(allEngineers);
     }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Engineer engineer)
+    {
+      // can add error handeling if engineer is blank-data annotations
+      _db.Engineers.Add(engineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
