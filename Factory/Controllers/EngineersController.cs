@@ -69,5 +69,14 @@ namespace Factory.Controllers
       }
       return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
+
+    public ActionResult DeleteMachineAccess(int id, int engineerId)
+    {
+      AuthorizationJoin join = _db.AuthorizationJoins
+      .FirstOrDefault(join => (join.MachineId == id && join.EngineerId == engineerId));
+      _db.AuthorizationJoins.Remove(join);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = join.EngineerId });
+    }
   }
 }
