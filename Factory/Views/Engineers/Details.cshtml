@@ -20,11 +20,12 @@ else
   <ul>
   @foreach (AuthorizationJoin joinEntry in @Model.AuthorizationJoins)
     {
-      <li>${joinEntry.Machine.Title}</li>
+      <li>@joinEntry.Machine.Title</li>
     }
 
   </ul>
 }
 
 @* //pass the join value in here *@
+<p>@Html.ActionLink("Add a machine to engineer", "AddMachine", new { id = Model.EngineerId })</p>
 
