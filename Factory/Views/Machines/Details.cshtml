@@ -22,9 +22,9 @@ else
     {
       <li>@Html.ActionLink($"{joinEntry.Engineer.Name}", "Details", "Engineers", new {id = @joinEntry.EngineerId})</li>
     }
-
   </ul>
 }
 
 @* //pass the join value in here *@
+<p>@Html.ActionLink("Add a engineer to machine", "AddEngineer", new { id = Model.MachineId })</p>
 
