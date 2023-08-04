@@ -6,6 +6,8 @@ namespace Factory.Models
   {
     public int MachineId { get; set; }
     public string Title { get; set; }
+
+    public string Details { get; set;}
     public List<AuthorizationJoin> AuthorizationJoins { get; set; }
   }
 }
