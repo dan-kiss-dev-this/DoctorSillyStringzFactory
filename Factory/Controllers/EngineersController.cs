@@ -17,7 +17,8 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      return View();
+      List<Engineer> allEngineers = _db.Engineers.ToList();
+      return View(allEngineers);
     }
   }
 }
