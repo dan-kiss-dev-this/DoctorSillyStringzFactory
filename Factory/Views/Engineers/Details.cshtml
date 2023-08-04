@@ -20,8 +20,7 @@ else
   <ul>
   @foreach (AuthorizationJoin joinEntry in @Model.AuthorizationJoins)
     {
-      <li>@joinEntry.Machine.Title</li>
-      @Html.ActionLink("View Machine", "Details", "Machine", new {id = @joinEntry.MachineId})
+      <li>@Html.ActionLink($"{joinEntry.Machine.Title}", "Details", "Machine", new {id = @joinEntry.MachineId})</li>
     }
 
   </ul>
