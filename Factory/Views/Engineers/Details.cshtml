@@ -21,6 +21,7 @@ else
   @foreach (AuthorizationJoin joinEntry in @Model.AuthorizationJoins)
     {
       <li>@joinEntry.Machine.Title</li>
+      @Html.ActionLink("View Machine", "Details", "Machine", new {id = @joinEntry.MachineId})
     }
 
   </ul>
