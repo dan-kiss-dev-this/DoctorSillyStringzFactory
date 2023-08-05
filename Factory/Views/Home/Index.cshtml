@@ -2,10 +2,27 @@
     ViewData["Title"] = "Home Page";
 }
 
+@using Factory.Models
+@* @model Factory.Models.AuthorizationJoin *@
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr />
+    <div>
+        <h2>@Html.ActionLink("Engineers", "Index", "Engineers")</h2>
+        <br/>
+        @foreach (Engineer engineer in @ViewBag.allEngineers)
+        {
+            <h4>@engineer.Name</h4>
+        }
+    </div>
+    <hr />
+    <div>
+        <h2>@Html.ActionLink("Machines", "Index", "Machines")</h3>
+        <br/>
+        @foreach (Machine machine in @ViewBag.allMachines)
+        {
+            <h4>@machine.Title</h4>
+        }
+    </div>
 </div>
-
-@Html.ActionLink("Engineers", "Index", "Engineers")
-@Html.ActionLink("Machines", "Index", "Machines")
