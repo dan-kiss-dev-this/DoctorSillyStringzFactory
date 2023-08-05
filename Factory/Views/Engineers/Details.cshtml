@@ -31,4 +31,5 @@ else
 
 @* //pass the join value in here *@
 <p>@Html.ActionLink("Add a machine to engineer", "AddMachine", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Delete this engineer", "Delete", new { id = @Model.EngineerId})</p>
 
