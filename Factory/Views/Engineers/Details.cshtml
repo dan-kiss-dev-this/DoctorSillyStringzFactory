@@ -23,13 +23,17 @@ else
   <ul>
   @foreach (AuthorizationJoin joinEntry in @Model.AuthorizationJoins)
     {
-      <li>@Html.ActionLink($"{joinEntry.Machine.Title}", "Details", "Machines", new {id = @joinEntry.MachineId}) | <button>@Html.ActionLink("Delete access", "DeleteMachineAccess", new {id = @joinEntry.MachineId, engineerId = @joinEntry.EngineerId})</button></li>
+      <li>@Html.ActionLink($"{joinEntry.Machine.Title}", "Details", "Machines", new {id = @joinEntry.MachineId}) |
+        <button>@Html.ActionLink("Delete access", "DeleteMachineAccess", new {id = @joinEntry.MachineId, engineerId =
+      @joinEntry.EngineerId})</button>
+      </li>
     }
 
   </ul>
 }
 
-@* //pass the join value in here *@
+<p>@Html.ActionLink("Edit this engineer's info", "Edit", new {id = @Model.EngineerId})</p>
 <p>@Html.ActionLink("Add a machine to engineer", "AddMachine", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Delete this engineer", "Delete", new { id = @Model.EngineerId})</p>
+<p>@Html.ActionLink("Back to Engineers", "Index")</p>
 

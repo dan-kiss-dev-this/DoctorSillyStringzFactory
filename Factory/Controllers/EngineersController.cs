@@ -99,5 +99,18 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Edit(int id)
+    {
+      Engineer editEngineer = _db.Engineers.FirstOrDefault(entry => entry.EngineerId == id);
+      return View(editEngineer);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Engineer engineer)
+    {
+      _db.Engineers.Update(engineer);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
+    }
   }
 }
