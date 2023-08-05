@@ -29,7 +29,11 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Machine machine)
     {
-      // can add error handeling if engineer is blank-data annotations
+      // can add error handling if engineer is blank-data annotations
+      if (!ModelState.IsValid)
+      {
+        return View(machine);
+      }
       _db.Machines.Add(machine);
       _db.SaveChanges();
       return RedirectToAction("Index");

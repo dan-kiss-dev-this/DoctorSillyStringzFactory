@@ -9,6 +9,9 @@
 
 @using (Html.BeginForm())
 {
+  <p>@Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+  <p>@Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
   @Html.LabelFor(model => model.Title)
   @Html.TextBoxFor(model => model.Title)
 
